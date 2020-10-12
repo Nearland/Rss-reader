@@ -11,7 +11,7 @@ def getHeadlines(rss_url):
     feed = parseRSS(rss_url)
     for newsitem in feed['items']:
         headlines.append(newsitem['title'])
-        headlines.append(newsitem['link'])
+        #headlines.append(newsitem['link'])
         #headlines.append(newsitem['id'])
         #headlines.append(newsitem['summary'])
         #headlines.append(newsitem['published'])
