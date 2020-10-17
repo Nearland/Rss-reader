@@ -22,7 +22,7 @@ class ExampleApp(QtWidgets.QMainWindow, designe.Ui_MainWindow):
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         self.pushButton.clicked.connect(self.myFunction)
         self.urltext.setPlaceholderText("Введите url-rss адрес...")
-
+        self.setFixedSize(800, 600)
         # Пока пустая функция которая выполняется
         # при нажатии на кнопку
     def myFunction(self):
@@ -57,27 +57,21 @@ class ExampleApp(QtWidgets.QMainWindow, designe.Ui_MainWindow):
 
         for key, url in newsurls.items():
             allheadlines.extend(getHeadlines(url))
-            listOfHeads = []
+
             s = ""
         if self.urltext.toPlainText() == 'https://news.google.com/rss?hl=ru&gl=RU&ceid=RU:ru':
             for hl in allheadlines:
-                s += hl + "\n"
+                s += "-" + hl + "\n"
                 # listOfHeads.append(hl)
                 self.outinfo.setPlainText(s)
                 print("-", hl)
-                # dannie = self.urltext.toPlainText()
-                # self.outinfo.setPlainText(hl)
-                #while True:
-                    #print("-", hl)
-                    #self.outinfo.setText(hl)
-                    #break
+
         else:
             from tkinter import messagebox
             root = tkinter.Tk()
             root.withdraw()
             messagebox.showinfo("Ошибка", "Неправильный url-rss адрес")
             print("lol")
-        print(listOfHeads)
 
 
 def main():
