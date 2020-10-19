@@ -22,6 +22,10 @@ class ExampleApp(QtWidgets.QMainWindow, designe.Ui_MainWindow):
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         self.pushButton.clicked.connect(self.myFunction)
         self.urltext.setPlaceholderText("Введите url-rss адрес...")
+        self.setFixedSize(800, 600)
+        self.outinfo.setOpenExternalLinks(True)
+        self.outinfo.setOpenLinks(True)
+        #self.outinfo.setText('<a href="https://www.google.com">https://www.google.com</a>')
 
         # Пока пустая функция которая выполняется
         # при нажатии на кнопку
@@ -57,26 +61,23 @@ class ExampleApp(QtWidgets.QMainWindow, designe.Ui_MainWindow):
 
         for key, url in newsurls.items():
             allheadlines.extend(getHeadlines(url))
+            g = ""
+            s = ""
         if self.urltext.toPlainText() == 'https://news.google.com/rss?hl=ru&gl=RU&ceid=RU:ru':
             for hl in allheadlines:
-                lol = [hl]
-                lol2 = ([hl])
-                print(lol)
-                print(lol2)
-                self.outinfo.setPlainText(str(lol2))
-                #print("-", hl)
-                # dannie = self.urltext.toPlainText()
-                # self.outinfo.setPlainText(hl)
-                #while True:
-                    #print("-", hl)
-                    #self.outinfo.setText(hl)
-                    #break
+                s += "-" + hl + "\n"
+                self.outinfo.setPlainText(s)
+
+                if self.checkBox_3.isChecked():
+                    g += "<a href=\""+hl+"\">"+hl+"</a>"
+            self.outinfo.setText(g)
+            print("-", g)
         else:
             from tkinter import messagebox
             root = tkinter.Tk()
             root.withdraw()
             messagebox.showinfo("Ошибка", "Неправильный url-rss адрес")
-            print("lol")
+            print("Success")
 
 
 def main():
