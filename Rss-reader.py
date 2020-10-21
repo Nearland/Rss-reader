@@ -19,12 +19,12 @@ def getHeadlines(rss_url):
     return headlines
 
 
+
 allheadlines = []
 
 newsurls = {
 
     'googlenews': 'https://news.google.com/rss?hl=ru&gl=RU&ceid=RU:ru',
-
 
 }
 
@@ -32,4 +32,7 @@ for key, url in newsurls.items():
     allheadlines.extend(getHeadlines(url))
 
 for hl in allheadlines:
+    pass
     print(hl)
+
+
